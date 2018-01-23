@@ -372,6 +372,11 @@ header {
   margin: 0 0 20px;
 }
 
+.section-cta h4 {
+  color: #fff;
+  margin: 0 0 20px;
+}
+
 .button-cta {
   border: 2px solid #fff;
   padding: 10px 50px;
@@ -978,6 +983,35 @@ color: #fff;
     letter-spacing: 2px;
     font-size: 16px;
     padding: 17px 45px;
+}
+
+/*--------------------
+8. Etc.
+--------------------*/
+
+.display-period {
+  margin: 20px 0;
+}
+
+#kakin-list {
+  width: 70%;
+}
+#kakin-list tbody {
+  height: 250px;
+  overflow-y: auto;
+  width: 100%;
+}
+#kakin-list thead, tbody, th, tr, td {
+  display: block;
+}
+#kakin-list td {
+  padding: 10px 0;
+}
+#kakin-list tbody td {
+  float:left;
+}
+#kakin-list thead tr th {
+  float:left;
 }
 
 /* Back to top button
