@@ -989,16 +989,28 @@ color: #fff;
 8. Etc.
 --------------------*/
 
+#notice-latest {
+  margin-top: 10px;
+  font-size: 1.5em;
+}
+
 .display-period {
   margin: 20px 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: 250px;
+}
+.display-period #period-form {
+  display: inline-block;
 }
 
 #kakin-list {
   width: 70%;
+  margin: auto;
 }
 #kakin-list tbody {
   height: 250px;
-  overflow-y: auto;
+  overflow-y: scroll;
   width: 100%;
 }
 #kakin-list thead, tbody, th, tr, td {

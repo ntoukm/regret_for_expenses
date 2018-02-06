@@ -30,7 +30,7 @@ try {
     $checkUserExistence->bindValue(':twitter_id', $twitteroauth_user->id, PDO::PARAM_INT);
     $checkUserExistence->execute();
 
-    $user_id = $checkUserExistence->fetch(PDO::FETCH_ASSOC);
+    $user_id = $checkUserExistence->fetch(PDO::FETCH_COLUMN);
 
     // 初回ログインかどうか
     if ($user_id) {

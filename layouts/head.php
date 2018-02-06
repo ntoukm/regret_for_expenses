@@ -40,7 +40,11 @@
               <a href="#page-top"></a>
             </li>
             <li>
-              <a class="page-scroll" href="#" data-toggle="modal" data-target="#Modal-1">Signin</a>
+              <? if (!isset($_SESSION['user_id'])) : ?>
+                <a class="page-scroll" href="#" data-toggle="modal" data-target="#Modal-1">Signin</a>
+              <? else : ?>
+                <a class="page-scroll" href="./top.php">Top</a>
+              <? endif; ?>
             </li>
           </ul>
         </div>
