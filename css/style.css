@@ -908,7 +908,7 @@ font-size: 11px;
   letter-spacing: 1px;
   text-transform: uppercase;
   font-weight: 500;
-  color: #fff;
+  /* color: #fff; */
   margin: 25px 20px;
 }
 
@@ -916,21 +916,6 @@ font-size: 11px;
   background-color: #FED136;
   margin-right: 15px;
   padding: 5px 10px;
-}
-
-.twitter-login {
-  display: block;
-  width: 170px;
-  padding: 10px 20px;
-  margin: 10px 0;
-  border-radius: 30px;
-  background: #55acee;
-  color: #fff;
-  text-decoration: none;
-  transition: background-color 0.3s;
-}
-.twitter-login:hover {
-  background: #337ab7;
 }
 
 /*--------------------
@@ -989,6 +974,35 @@ color: #fff;
 8. Etc.
 --------------------*/
 
+.inline-block {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.button {
+  padding: 10px 20px;
+  margin: 10px 0;
+  border-radius: 30px;
+  font-size: 12px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+.twitter-login {
+  display: block;
+  width: 180px;
+  background: #55acee;
+  color: #fff;
+}
+.twitter-login:hover {
+  background: #337ab7;
+}
+.record-kakin-log {
+  margin: 0 10px;
+  letter-spacing: 1px;
+  background: #55acee;
+  color: #fff;
+}
+
 #notice-latest {
   margin-top: 10px;
   font-size: 1.5em;
@@ -998,10 +1012,7 @@ color: #fff;
   margin: 20px 0;
   margin-right: auto;
   margin-left: auto;
-  width: 250px;
-}
-.display-period #period-form {
-  display: inline-block;
+  width: 400px;
 }
 
 #kakin-list {
@@ -1013,7 +1024,9 @@ color: #fff;
   overflow-y: scroll;
   width: 100%;
 }
-#kakin-list thead, tbody, th, tr, td {
+/* bootstrap-datepicerと競合？のため一時的な対応 */
+/* #kakin-list thead, tbody, th, tr, td { */
+.block {
   display: block;
 }
 #kakin-list td {

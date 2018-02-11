@@ -2,10 +2,9 @@
 
 function check_signined() {
     if (!isset($_SESSION['user_id'])) {
-        $_SESSION['status'] = "利用にはサインインが必要です。";
+        $_SESSION['is_signined'] = false;
         header('location: /regret_for_expenses/index.php');
-        exit;
     } else {
-        unset($_SESSION['status']);
+        $_SESSION['is_signined'] = true;
     }
 }

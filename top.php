@@ -41,7 +41,6 @@ try {
 }
 
 ?>
-<?= $error ?>
 
 <section id="top" class="light-bg">
   <div class="container">
@@ -49,6 +48,15 @@ try {
       <div class="col-lg-12 text-center">
         <div class="section-title">
           <br />
+          <? if (isset($error)) : ?>
+            <p class="alert alert-warning"><?= $error ?></p>
+          <? endif; ?>
+          <? if (isset($_SESSION['message']['error'])) : ?>
+            <p class="alert alert-danger"><?= $_SESSION['message']['error'] ?></p>
+          <? endif; ?>
+          <? if (isset($_SESSION['message']['success'])) : ?>
+            <p class="alert alert-success"><?= $_SESSION['message']['success'] ?></p>
+          <? endif; ?>
           <div id="notice-latest">
             最後に課金したのは<b><?= date('n月j日', strtotime($latest_pay['date'])) ?>、<?= number_format($latest_pay['amount']) ?>円</b>です。
           </div>
@@ -59,32 +67,32 @@ try {
     <div class="container">
       <div class="display-period">
         <span class="small-letter">表示データの期間を変更：</span>
-        <form name="data-period" id="period-form">
+        <form name="data-period" class="inline-block">
           <select name="data-period">
             <option value="year" selected>年単位</option>
             <option value="month">月単位</option>
             <option value="week">週単位</option>
           </select>
         </form>
-
+        <a href="#" data-toggle="modal" data-target="#Modal-2" class="button record-kakin-log">記録する</a>
       </div>
 
       <table class="table" id="kakin-list">
-        <thead>
-          <tr>
-            <th class="col-xs-3"><center><i class="fa fa-calendar fa-2x"></i></center></th>
-            <th class="col-xs-2"><center><i class="fa fa-jpy fa-2x"></i></center></th>
-            <th class="col-xs-3"><center><i class="fa fa-tag fa-2x"></i></center></th>
-            <th class="col-xs-4"><center><i class="fa fa-comment fa-2x"></i></center></th>
+        <thead class="block">
+          <tr class="block">
+            <th class="col-xs-3 block"><center><i class="fa fa-calendar fa-2x"></i></center></th>
+            <th class="col-xs-2 block"><center><i class="fa fa-tag fa-2x"></i></center></th>
+            <th class="col-xs-3 block"><center><i class="fa fa-jpy fa-2x"></i></center></th>
+            <th class="col-xs-4 block"><center><i class="fa fa-comment fa-2x"></i></center></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="block">
           <?php foreach ($all_pays as $row) : ?>
-          <tr>
-            <td class="col-xs-3 text-center"><?= $row['date'] ?></td>
-            <td class="col-xs-2 text-center"><b>¥ <?= number_format($row['amount']) ?></b></td>
-            <td class="col-xs-3 text-center"><?= $row['detail'] ?></td>
-            <td class="col-xs-4"><?= $row['purpose'] ?></td>
+          <tr class="block">
+            <td class="col-xs-3 text-center block"><?= $row['date'] ?></td>
+            <td class="col-xs-2 text-center block"><?= $row['detail'] ?></td>
+            <td class="col-xs-3 text-center block"><b>¥ <?= number_format($row['amount']) ?></b></td>
+            <td class="col-xs-4 block"><?= $row['purpose'] ?></td>
           </tr>
           <?php endforeach; ?>
         </tbody>
@@ -96,5 +104,6 @@ try {
 <?php
 
 readfile(dirname('index.php').'/layouts/foot.html');
+unset($_SESSION['message']);
 
 ?>
