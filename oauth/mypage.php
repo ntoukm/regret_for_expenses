@@ -27,8 +27,7 @@ try {
     $checkUserExistence = $dbh->prepare(
         'SELECT `id` FROM `users` WHERE `twitter_id` = :twitter_id;'
     );
-    $checkUserExistence->bindValue(':twitter_id', $twitteroauth_user->id, PDO::PARAM_INT);
-    $checkUserExistence->execute();
+    $checkUserExistence->execute([':twitter_id' => $twitteroauth_user->id]);
 
     $user_id = $checkUserExistence->fetch(PDO::FETCH_COLUMN);
 
@@ -39,13 +38,11 @@ try {
         $insertUser = $dbh->prepare(
             'INSERT INTO `users` (`name`, `twitter_id`) VALUES (:name, :twitter_id);'
         );
-        $insertUser->bindValue(':name', $twitteroauth_user->name, PDO::PARAM_STR);
-        // パラメータ不足時のエラー内容：SQLSTATE[HY093]: Invalid parameter number
-        $insertUser->bindValue(':twitter_id', $twitteroauth_user->id, PDO::PARAM_INT);
-        $insertUser->execute();
+        $insertUser->execute([':name' => $twitteroauth_user->name, ':twitter_id' => $twitteroauth_user->id]);
 
         $_SESSION['user_id'] = $dbh->lastInsertId('id');
     }
+    $_SESSION['is_signined'] = true;
     header('location: /regret_for_expenses/top.php');
 
 } catch(PDOException $e) {

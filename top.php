@@ -22,8 +22,7 @@ try {
     $selectAllPays = $dbh->prepare(
         'SELECT * FROM `pays` WHERE `user_id` = :user_id ORDER BY `date` DESC;'
     );
-    $selectAllPays->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT); // bindValue() or bindParam()
-    $selectAllPays->execute();
+    $selectAllPays->execute([':user_id' => $_SESSION['user_id']]);
     $all_pays = $selectAllPays->fetchAll(PDO::FETCH_ASSOC); // fetch,fetchAll,etc. 引数には返り値の形式を指定する.
 
     // 最新データの取得
@@ -31,9 +30,7 @@ try {
         'SELECT SUM(`amount`) as `amount`, `date` FROM `pays`
             WHERE `user_id` = :user_id1 AND `date` = (SELECT MAX(`date`) FROM `pays` WHERE `user_id` = :user_id2)'
     );
-    $selectLatestPays->bindValue(':user_id1', $_SESSION['user_id'], PDO::PARAM_INT);
-    $selectLatestPays->bindValue(':user_id2', $_SESSION['user_id'], PDO::PARAM_INT);
-    $selectLatestPays->execute();
+    $selectLatestPays->execute(['user_id1' => $_SESSION['user_id'], 'user_id2' => $_SESSION['user_id']]);
     $latest_pay = $selectLatestPays->fetch(PDO::FETCH_ASSOC);
 
 } catch(PDOException $e) {

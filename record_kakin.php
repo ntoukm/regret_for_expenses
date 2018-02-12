@@ -26,13 +26,8 @@ if ($date && $detail && $amount && $purpose) {
             'INSERT INTO `pays` (`user_id`, `date`, `amount`, `detail`, `purpose`, `created_at`)
                 VALUES (:user_id, :date, :amount, :detail, :purpose, :created_at);'
         );
-        $insertPay->bindValue(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
-        $insertPay->bindValue(':date', $date, PDO::PARAM_STR);
-        $insertPay->bindValue(':amount', $amount, PDO::PARAM_INT);
-        $insertPay->bindValue(':detail', $detail, PDO::PARAM_STR);
-        $insertPay->bindValue(':purpose', $purpose, PDO::PARAM_STR);
-        $insertPay->bindValue(':created_at', date('Y-m-d H:i:s'), PDO::PARAM_STR);
-        $insertPay->execute();
+        $insertPay->execute([':user_id' => $_SESSION['user_id'], ':date' => $date, ':amount' => $amount,
+                                ':detail' => $detail, ':purpose' => $purpose, ':created_at' => date('Y-m-d H:i:s')]);
 
         $_SESSION['message']['success'] = "登録しました！";
     } catch(PDOException $e) {

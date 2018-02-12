@@ -11,7 +11,7 @@ include(dirname('index.php').'/layouts/head.php');
       <div class="col-lg-12 text-center">
         <div class="section-title">
           <br />
-          <? if (!$_SESSION['is_signined']) : ?>
+          <? if (isset($_SESSION['is_signined']) && !$_SESSION['is_signined']) : ?>
             <p class="alert alert-warning">利用にはサインインが必要です。</p>
           <? endif; ?>
           <h2>About</h2>
