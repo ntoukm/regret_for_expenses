@@ -5,10 +5,9 @@ session_start();
 require_once 'functions.php';
 check_signined();
 
-$date    = filter_input(INPUT_POST, 'date');
-$detail  = filter_input(INPUT_POST, 'detail');
-$amount  = filter_input(INPUT_POST, 'amount');
-$purpose = filter_input(INPUT_POST, 'purpose');
+foreach (['date', 'detail', 'amount', 'purpose'] as $v) {
+    $_SESSION['kakin'][$v] = filter_input(INPUT_POST, $v);
+}
 
 if ($date && $detail && $amount && $purpose) {
     try {

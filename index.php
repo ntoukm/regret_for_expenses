@@ -93,6 +93,6 @@ include(dirname('index.php').'/layouts/head.php');
 
 <?php
 
-readfile(dirname('index.php').'/layouts/foot.html');
+include(dirname('index.php').'/layouts/foot.php');
 
 ?>

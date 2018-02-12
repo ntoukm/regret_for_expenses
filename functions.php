@@ -1,5 +1,9 @@
 <?php
 
+function h($string) {
+    return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
+}
+
 function check_signined() {
     if (!isset($_SESSION['user_id'])) {
         $_SESSION['is_signined'] = false;

@@ -43,19 +43,19 @@
             <form action="record_kakin.php" method="post">
               <div class="form-group inline-block">
                 <label for="date"><i class="fa fa-calendar fa-1x"></i> 日付</label>
-                <input type="text" name="date" class="form-control" style="width: 100px;" id="datepicker" />
+                <input type="text" name="date" value="<?= h($_SESSION['kakin']['date']) ?>" class="form-control" style="width: 100px;" id="datepicker" />
               </div>
               <div class="form-group inline-block">
                 <label for="detail"><i class="fa fa-tag fa-1x"></i> ゲームタイトル</label>
-                <input type="text" name="detail" class="form-control" style="width: 200px;" />
+                <input type="text" name="detail" value="<?= h($_SESSION['kakin']['detail']) ?>" class="form-control" style="width: 200px;" />
               </div><br />
               <div class="form-group inline-block">
                 <label for="amount"><i class="fa fa-jpy fa-1x"></i> 金額</label>
-                <input type="text" name="amount" class="form-control" style="width: 150px;" />
+                <input type="text" name="amount" value="<?= h($_SESSION['kakin']['amount']) ?>" class="form-control" style="width: 150px;" />
               </div>
               <div class="form-group inline-block">
                 <label for="purpose"><i class="fa fa-comment fa-1x"></i> 目的</label>
-                <input type="text" name="purpose" class="form-control" style="width: 250px;" />
+                <input type="text" name="purpose" value="<?= h($_SESSION['kakin']['purpose']) ?>" class="form-control" style="width: 250px;" />
               </div>
               <input type="submit" name="submit" class="button inline-block record-kakin-log" value="登録" />
             </form>

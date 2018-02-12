@@ -100,7 +100,8 @@ try {
 
 <?php
 
-readfile(dirname('index.php').'/layouts/foot.html');
+include(dirname('index.php').'/layouts/foot.php');
+unset($_SESSION['kakin']);
 unset($_SESSION['message']);
 
 ?>
