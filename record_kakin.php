@@ -5,8 +5,9 @@ session_start();
 require_once 'functions.php';
 check_signined();
 
-foreach (['date', 'detail', 'amount', 'purpose'] as $v) {
-    $_SESSION['kakin'][$v] = filter_input(INPUT_POST, $v);
+$keys = ['date', 'detail', 'amount', 'purpose'];
+foreach ($keys as $k) {
+    $_SESSION['kakin'][$k] = filter_input(INPUT_POST, $k);
 }
 
 if ($date && $detail && $amount && $purpose) {
@@ -25,7 +26,7 @@ if ($date && $detail && $amount && $purpose) {
             'INSERT INTO `pays` (`user_id`, `date`, `amount`, `detail`, `purpose`, `created_at`)
                 VALUES (:user_id, :date, :amount, :detail, :purpose, :created_at);'
         );
-        $insertPay->execute([':user_id' => $_SESSION['user_id'], ':date' => $date, ':amount' => $amount,
+        $insertPay->execute([':user_id' => $_SESSION['user']['id'], ':date' => $date, ':amount' => $amount,
                                 ':detail' => $detail, ':purpose' => $purpose, ':created_at' => date('Y-m-d H:i:s')]);
 
         $_SESSION['message']['success'] = "登録しました！";

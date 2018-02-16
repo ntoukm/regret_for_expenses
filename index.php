@@ -93,6 +93,7 @@ include(dirname('index.php').'/layouts/head.php');
 
 <?php
 
-include(dirname('index.php').'/layouts/foot.php');
+// [TODO] includeだと何故か読み込まれないのでreadfileにしている
+readfile(dirname('index.php').'/layouts/foot.php');
 
 ?>

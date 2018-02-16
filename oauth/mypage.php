@@ -33,15 +33,16 @@ try {
 
     // 初回ログインかどうか
     if ($user_id) {
-        $_SESSION['user_id'] = $user_id;
+        $_SESSION['user']['id'] = $user_id;
     } else {
         $insertUser = $dbh->prepare(
             'INSERT INTO `users` (`name`, `twitter_id`) VALUES (:name, :twitter_id);'
         );
         $insertUser->execute([':name' => $twitteroauth_user->name, ':twitter_id' => $twitteroauth_user->id]);
 
-        $_SESSION['user_id'] = $dbh->lastInsertId('id');
+        $_SESSION['user']['id'] = $dbh->lastInsertId('id');
     }
+    $_SESSION['user']['icon_image'] = $twitteroauth_user->profile_image_url_https;
     $_SESSION['is_signined'] = true;
     header('location: /regret_for_expenses/top.php');
 

@@ -22,7 +22,7 @@ try {
     $selectAllPays = $dbh->prepare(
         'SELECT * FROM `pays` WHERE `user_id` = :user_id ORDER BY `date` DESC;'
     );
-    $selectAllPays->execute([':user_id' => $_SESSION['user_id']]);
+    $selectAllPays->execute([':user_id' => $_SESSION['user']['id']]);
     $all_pays = $selectAllPays->fetchAll(PDO::FETCH_ASSOC); // fetch,fetchAll,etc. 引数には返り値の形式を指定する.
 
     // 最新データの取得
@@ -30,7 +30,7 @@ try {
         'SELECT SUM(`amount`) as `amount`, `date` FROM `pays`
             WHERE `user_id` = :user_id1 AND `date` = (SELECT MAX(`date`) FROM `pays` WHERE `user_id` = :user_id2)'
     );
-    $selectLatestPays->execute(['user_id1' => $_SESSION['user_id'], 'user_id2' => $_SESSION['user_id']]);
+    $selectLatestPays->execute(['user_id1' => $_SESSION['user']['id'], 'user_id2' => $_SESSION['user']['id']]);
     $latest_pay = $selectLatestPays->fetch(PDO::FETCH_ASSOC);
 
 } catch(PDOException $e) {

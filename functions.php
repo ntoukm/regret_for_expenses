@@ -5,7 +5,7 @@ function h($string) {
 }
 
 function check_signined() {
-    if (!isset($_SESSION['user_id'])) {
+    if (!isset($_SESSION['user']['id'])) {
         $_SESSION['is_signined'] = false;
         header('location: /regret_for_expenses/index.php');
     } else {

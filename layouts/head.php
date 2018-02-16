@@ -1,3 +1,23 @@
+<?php
+
+$list_menu = (isset($_SESSION['is_signined']) && $_SESSION['is_signined']) ?
+<<< EOF
+<li>
+  <a class="page-scroll" href="./top.php">Top</a>
+</li>
+<li>
+  <img src="{$_SESSION['user']['icon_image']}" class="icon-image">
+</li>
+EOF
+:
+<<< EOF
+<li>
+  <a class="page-scroll" href="#" data-toggle="modal" data-target="#Modal-1">Signin</a>
+</li>
+EOF;
+
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
   <head>
@@ -40,13 +60,7 @@
             <li class="hidden">
               <a href="#page-top"></a>
             </li>
-            <li>
-              <? if (!isset($_SESSION['user_id'])) : ?>
-                <a class="page-scroll" href="#" data-toggle="modal" data-target="#Modal-1">Signin</a>
-              <? else : ?>
-                <a class="page-scroll" href="./top.php">Top</a>
-              <? endif; ?>
-            </li>
+            <?= $list_menu ?>
           </ul>
         </div>
         <!-- /.navbar-collapse -->

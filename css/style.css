@@ -974,6 +974,10 @@ color: #fff;
 8. Etc.
 --------------------*/
 
+.icon-image {
+  border-radius: 10px;
+}
+
 .inline-block {
   display: inline-block;
   margin-right: 10px;
