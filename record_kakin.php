@@ -13,13 +13,13 @@ foreach ($keys as $k) {
 if ($date && $detail && $amount && $purpose) {
     try {
         $dbh = new PDO(
-             'mysql:host=localhost;dbname=dev_no_kakin;charset=utf8',
+            'mysql:host=localhost;dbname=dev_no_kakin;charset=utf8',
             'root',
             'root',
-            array(
+            [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_EMULATE_PREPARES => false,
-            )
+            ]
         );
 
         $insertPay = $dbh->prepare(

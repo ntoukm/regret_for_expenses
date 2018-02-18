@@ -18,10 +18,10 @@ try {
         'mysql:host=localhost;dbname=dev_no_kakin;charset=utf8',
         'root',
         'root',
-        array(
+        [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_EMULATE_PREPARES => false,
-        )
+        ]
     );
 
     $checkUserExistence = $dbh->prepare(

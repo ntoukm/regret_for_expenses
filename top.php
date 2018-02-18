@@ -12,10 +12,10 @@ try {
         'mysql:host=localhost;dbname=dev_no_kakin;charset=utf8',
         'root',
         'root',
-        array(
+        [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_EMULATE_PREPARES => false,
-        )
+        ]
     );
 
     // 一覧データの取得
@@ -27,7 +27,7 @@ try {
 
     // 最新データの取得
     $selectLatestPays = $dbh->prepare(
-        'SELECT SUM(`amount`) as `amount`, `date` FROM `pays`
+        'SELECT SUM(`amount`) AS `amount`, `date` FROM `pays`
             WHERE `user_id` = :user_id1 AND `date` = (SELECT MAX(`date`) FROM `pays` WHERE `user_id` = :user_id2)'
     );
     $selectLatestPays->execute(['user_id1' => $_SESSION['user']['id'], 'user_id2' => $_SESSION['user']['id']]);
@@ -62,13 +62,14 @@ try {
     </div>
 
     <div class="container">
-      <div class="display-period">
+      <div class="sub-menu">
         <span class="small-letter">表示データの期間を変更：</span>
-        <form name="data-period" class="inline-block">
-          <select name="data-period">
-            <option value="year" selected>年単位</option>
-            <option value="month">月単位</option>
+        <form name="select-period" class="inline-block">
+          <select name="period">
+            <option value="day" selected>日単位</option>
             <option value="week">週単位</option>
+            <option value="month">月単位</option>
+            <option value="year">年単位</option>
           </select>
         </form>
         <a href="#" data-toggle="modal" data-target="#Modal-2" class="button record-kakin-log">記録する</a>
@@ -79,13 +80,13 @@ try {
           <tr class="block">
             <th class="col-xs-3 block"><center><i class="fa fa-calendar fa-2x"></i></center></th>
             <th class="col-xs-2 block"><center><i class="fa fa-tag fa-2x"></i></center></th>
-            <th class="col-xs-3 block"><center><i class="fa fa-jpy fa-2x"></i></center></th>
+            <th class="col-xs-3 block"><center><i class="fa fa-money fa-2x"></i></center></th>
             <th class="col-xs-4 block"><center><i class="fa fa-comment fa-2x"></i></center></th>
           </tr>
         </thead>
         <tbody class="block">
           <?php foreach ($all_pays as $row) : ?>
-          <tr class="block">
+          <tr class="block kakin-list-row">
             <td class="col-xs-3 text-center block"><?= $row['date'] ?></td>
             <td class="col-xs-2 text-center block"><?= $row['detail'] ?></td>
             <td class="col-xs-3 text-center block"><b>¥ <?= number_format($row['amount']) ?></b></td>
