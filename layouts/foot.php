@@ -90,6 +90,7 @@ foreach ($keys as $k) {
   <script src="js/theme-scripts.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.ja.min.js"></script>
+  <script src="js/functions.js"></script>
   <script>
   $(function(){
     $('#datepicker').datepicker({
