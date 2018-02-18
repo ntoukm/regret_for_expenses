@@ -17,70 +17,56 @@ try {
     $period  = filter_input(INPUT_POST, 'period');
     $pays    = [];
 
+    $select  = '';
+    $from    = 'FROM `pays` ';
+    $where   = 'WHERE `user_id` = :user_id ';
+    $groupby = '';
+    $orderby = 'ORDER BY `date` DESC ';
+
     switch ($period) {
         case 'day':
-            $sql = 'SELECT
-                      `date`,
-                      `detail`,
-                      `amount`,
-                      `purpose`
-                    FROM
-                      `pays`
-                    WHERE
-                      `user_id` = :user_id
-                    ORDER BY
-                      `date` DESC';
+            $select = 'SELECT
+                          `date`,
+                          `detail`,
+                          `amount`,
+                          `purpose` ';
             break;
         case 'week':
-            $sql = 'SELECT
-                      SUBDATE(`date`, WEEKDAY(`date`)) AS `date`,
-                      `detail`,
-                      SUM(`amount`) AS `amount`,
-                      `purpose` -- 最新のレコードのものが取得される
-                    FROM
-                      `pays`
-                    WHERE
-                      `user_id` = :user_id
-                    GROUP BY
-                      `detail`,
-                      SUBDATE(`date`, WEEKDAY(`date`))
-                    ORDER BY
-                      `date` DESC';
+            $select = 'SELECT
+                          SUBDATE(`date`, WEEKDAY(`date`)) AS `date`,
+                          `detail`,
+                          SUM(`amount`) AS `amount`,
+                          `purpose` '; // 最新のレコードのものが取得される
+
+            $groupby = 'GROUP BY
+                          `detail`,
+                          SUBDATE(`date`, WEEKDAY(`date`)) ';
             break;
         case 'month':
-            $sql = 'SELECT
-                      DATE_FORMAT(`date`, "%Y%m") AS `date`,
-                      `detail`,
-                      SUM(`amount`) AS `amount`,
-                      `purpose` -- 最新のレコードのものが取得される
-                    FROM
-                      `pays`
-                    WHERE
-                      `user_id` = :user_id
-                    GROUP BY
-                      `detail`,
-                      DATE_FORMAT(`date`, "%Y%m")
-                    ORDER BY
-                      `date` DESC';
+            $select = 'SELECT
+                          DATE_FORMAT(`date`, "%Y/%m") AS `date`,
+                          `detail`,
+                          SUM(`amount`) AS `amount`,
+                          `purpose` '; // 最新のレコードのものが取得される
+
+            $groupby = 'GROUP BY
+                          `detail`,
+                          DATE_FORMAT(`date`, "%Y%m") ';
             break;
         case 'year':
-            $sql = 'SELECT
-                      DATE_FORMAT(`date`, "%Y") AS `date`,
-                      `detail`,
-                      SUM(`amount`) AS `amount`,
-                      `purpose` -- 最新のレコードのものが取得される
-                    FROM
-                      `pays`
-                    WHERE
-                      `user_id` = :user_id
-                    GROUP BY
-                      `detail`,
-                      DATE_FORMAT(`date`, "%Y")
-                    ORDER BY
-                      `date` DESC';
+            $select = 'SELECT
+                          DATE_FORMAT(`date`, "%Y") AS `date`,
+                          `detail`,
+                          SUM(`amount`) AS `amount`,
+                          `purpose` '; // 最新のレコードのものが取得される
+
+            $groupby = 'GROUP BY
+                          `detail`,
+                          DATE_FORMAT(`date`, "%Y") ';
             break;
     }
 
+    $sql = $select . $from . $where . $groupby . $orderby;
     $selectPays = $dbh->prepare($sql);
     $selectPays->execute([':user_id' => $_SESSION['user']['id']]);
 
