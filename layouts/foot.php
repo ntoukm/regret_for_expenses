@@ -52,7 +52,7 @@ foreach ($keys as $k) {
             <form action="record_kakin.php" method="post">
               <div class="form-group inline-block">
                 <label for="date"><i class="fa fa-calendar fa-1x"></i> 日付</label>
-                <input type="text" name="date" value="<?= h($date) ?>" class="form-control" style="width: 100px;" id="datepicker" />
+                <input type="text" name="date" value="<?= h($date) ?>" class="form-control datepicker" style="width: 100px;" />
               </div>
               <div class="form-group inline-block">
                 <label for="detail"><i class="fa fa-tag fa-1x"></i> ゲームタイトル</label>
@@ -93,7 +93,7 @@ foreach ($keys as $k) {
   <script src="js/functions.js"></script>
   <script>
   $(function(){
-    $('#datepicker').datepicker({
+    $('.datepicker').datepicker({
         format: "yyyy/mm/dd",
         language: 'ja'
     });

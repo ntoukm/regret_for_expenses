@@ -1001,7 +1001,7 @@ color: #fff;
   background: #337ab7;
 }
 .record-kakin-log {
-  margin: 0 10px;
+  /* margin: 0 10px; */
   letter-spacing: 1px;
   background: #55acee;
   color: #fff;
@@ -1012,11 +1012,38 @@ color: #fff;
   font-size: 1.5em;
 }
 
-.sub-menu {
+.accordion-icon {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  cursor: pointer;
+  transform: rotate(0deg);
+  transition-duration: 0.3s;
+}
+.menu {
+  position: relative;
   margin: 20px 0;
   margin-right: auto;
   margin-left: auto;
-  width: 400px;
+  padding: 0 30px;
+  width: 650px;
+  /* 表示崩れの原因だった箇所 */
+  /* height: 60px; */
+  background: beige;
+  border-radius: 20px;
+}
+.menu.show .accordion-icon {
+  transform: rotate(180deg);
+  transition-duration: 0.3s;
+}
+.main-menu {
+  height: 60px;
+  line-height: 60px;
+}
+.sub-menu {
+  display: none;
+  height: 60px;
+  line-height: 60px;
 }
 
 #kakin-list {

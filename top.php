@@ -62,17 +62,30 @@ try {
     </div>
 
     <div class="container">
-      <div class="sub-menu">
-        <span class="small-letter">表示データの期間を変更：</span>
-        <form name="select-period" class="inline-block">
-          <select name="period">
-            <option value="day" selected>日単位</option>
-            <option value="week">週単位</option>
-            <option value="month">月単位</option>
-            <option value="year">年単位</option>
-          </select>
-        </form>
-        <a href="#" data-toggle="modal" data-target="#Modal-2" class="button record-kakin-log">記録する</a>
+      <div class="menu">
+        <i class="fa fa-angle-down fa-2x accordion-icon"></i>
+        <div class="main-menu">
+          <span class="small-letter">表示期間を変更：</span>
+          <form name="select-period" class="inline-block">
+            <select name="select-period">
+              <option value="day" selected>日単位</option>
+              <option value="week">週単位</option>
+              <option value="month">月単位</option>
+              <option value="year">年単位</option>
+            </select>
+          </form>
+          <a href="#" data-toggle="modal" data-target="#Modal-2" class="button record-kakin-log">記録する</a>
+        </div>
+        <div class="sub-menu">
+          <span class="small-letter">表示期間を指定：</span>
+          <form name="specify-period" class="inline-block">
+            <input type="text" name="specify-period-from" class="form-control datepicker inline-block" style="width: 100px;" />
+            〜&nbsp;&nbsp;
+            <input type="text" name="specify-period-to" class="form-control datepicker inline-block" style="width: 100px;" />
+          </form>
+          <a href="#" class="button record-kakin-log" id="specify-period-button">指定する</a>
+          <a href="#" class="button record-kakin-log">リセット</a>
+        </div>
       </div>
 
       <table class="table" id="kakin-list">
